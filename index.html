@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Databricks Migration Accelerators</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- HEADER CSS (Original Dark Theme) --- */
+        .ciq-header {
+            background-color: #000000;
+            padding: 20px 2rem;
+            color: white;
+            border-bottom: 1px solid #374151;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* --- BODY & GRID CSS --- */
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            /* Mesh gradient background */
+            background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                        radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-color: #f3f4f6;
+            background-image: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
+            gap: 20px;
+        }
+
+        .tile-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px; 
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Accent Strips */
+        .tile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background-color: #d1d5db;
+            transition: height 0.2s;
+        }
+
+        .tile-card[data-brand="gcp"]::before { background-color: #4285F4; }
+        .tile-card[data-brand="aws"]::before { background-color: #232F3E; }
+        .tile-card[data-brand="informatica"]::before { background-color: #FF4D00; }
+        .tile-card[data-brand="snowflake"]::before { background-color: #29B5E8; }
+        .tile-card[data-brand="teradata"]::before { background-color: #F37421; }
+        .tile-card[data-brand="databricks"]::before { background-color: #FF3621; }
+        .tile-card[data-brand="sap"]::before { background-color: #008FD3; }
+        .tile-card[data-brand="azure"]::before { background-color: #0078D4; }
+        .tile-card[data-brand="microsoft"]::before { background-color: #737373; }
+        .tile-card[data-brand="oracle"]::before { background-color: #C74634; }
+        .tile-card[data-brand="talend"]::before { background-color: #FF6D70; }
+
+        .tile-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .tile-card:hover::before { height: 8px; }
+
+        /* --- LOGO STYLING --- */
+        .logo-container {
+            height: 55px;
+            width: 100%;
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img, 
+        .logo-container svg {
+            max-height: 100%; 
+            width: auto;      
+            max-width: 180px; 
+            object-fit: contain; 
+            object-position: left;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-tag {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 6px;
+        }
+
+        .tile-card.placeholder {
+            border: 2px dashed #9ca3af;
+            background-color: transparent;
+            cursor: default;
+            align-items: center;
+            justify-content: center;
+        }
+        .tile-card.placeholder::before { display: none; }
+        .tile-card.placeholder:hover { transform: none; box-shadow: none; }
+
+        @media (max-width: 768px) {
+            .button-grid { grid-template-columns: 1fr; }
+            .header-container { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="ciq-header">
+        <div class="header-container">
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <a href="https://bpcs.com/" title="Blueprint Home">
+                    <img width="150" height="30" src="https://bpcs.com/wp-content/uploads/2021/02/BlueprintLogo_White_Tiles-400x81.png" alt="Blueprint Logo">
+                </a>
+                <span style="border-left: 1px solid #4b5563; padding-left: 24px; color: #e5e7eb; font-weight: 500; font-size: 1.1rem;">Databricks Migration Accelerators</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <h1>Databricks Core Platform Migration Assessments</h1>
+        <p class="subtitle">Select your current platform to access specific migration assessments, questionnaires, and accelerator tools.</p>
+        
+        <div class="button-grid">
+            
+            <a href="GCP.html" class="tile-card" data-brand="gcp">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" alt="Google Cloud">
+                </div>
+                <div>
+                    <h3 class="card-title">Google Cloud</h3>
+                    <div class="card-tag">Cloud Platform</div>
+                </div>
+            </a>
+
+            <a href="RED.html" class="tile-card" data-brand="aws">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS">
+                </div>
+                <div>
+                    <h3 class="card-title">AWS Redshift</h3>
+                    <div class="card-tag">Data Warehouse</div>
+                </div>
+            </a>
+
+            <a href="INFOR.html" class="tile-card" data-brand="informatica">
+                <div class="logo-container">
+                   <img src="infromatica.png" alt="Informatica Logo">
+                </div>
+                <div>
+                    <h3 class="card-title">Informatica</h3>
+                    <div class="card-tag">ETL & Integration</div>
+                </div>
+            </a>
+
+            <a href="SNOW.html" class="tile-card" data-brand="snowflake">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Snowflake_Logo.svg" alt="Snowflake">
+                </div>
+                <div>
+                    <h3 class="card-title">Snowflake</h3>
+                    <div class="card-tag">Data Cloud</div>
+                </div>
+            </a>
+
+            <a href="TD.html" class="tile-card" data-brand="teradata">
+                <div class="logo-container">
+                    <img src="teradata.png" alt="Teradata Logo">
+                </div>
+                <div>
+                    <h3 class="card-title">Teradata</h3>
+                    <div class="card-tag">Enterprise Data Warehouse</div>
+                </div>
+            </a>
+
+            <a href="UCM.html" class="tile-card" data-brand="databricks">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Databricks_Logo.png" alt="Databricks">
+                </div>
+                <div>
+                    <h3 class="card-title">Unity Catalog</h3>
+                    <div class="card-tag">Metastore Upgrade</div>
+                </div>
+            </a>
+
+            <a href="sap.html" class="tile-card" data-brand="sap">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP">
+                </div>
+                <div>
+                    <h3 class="card-title">SAP</h3>
+                    <div class="card-tag">ERP / BW</div>
+                </div>
+            </a>
+
+            <a href="synapse.html" class="tile-card" data-brand="azure">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure">
+                </div>
+                <div>
+                    <h3 class="card-title">Azure Synapse</h3>
+                    <div class="card-tag">Analytics</div>
+                </div>
+            </a>
+
+            <a href="SQL.html" class="tile-card" data-brand="microsoft">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft">
+                </div>
+                <div>
+                    <h3 class="card-title">SQL</h3>
+                    <div class="card-tag">Microsoft SQL Server</div>
+                </div>
+            </a>
+
+            <a href="oracle.html" class="tile-card" data-brand="oracle">
+                <div class="logo-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Oracle">
+                </div>
+                <div>
+                    <h3 class="card-title">Oracle</h3>
+                    <div class="card-tag">Database</div>
+                </div>
+            </a>
+
+            <a href="talend.html" class="tile-card" data-brand="talend">
+                <div class="logo-container">
+                    <svg viewBox="0 0 100 30" xmlns="http://www.w3.org/2000/svg">
+                         <text x="0" y="24" font-family="Arial, sans-serif" font-weight="800" font-size="28" fill="#FF6D70">talend</text>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="card-title">Talend</h3>
+                    <div class="card-tag">Data Integration</div>
+                </div>
+            </a>
+
+            <div class="tile-card placeholder">
+                <h3 class="card-title" style="color: #9ca3af; font-weight: 500;">(Coming Soon)</h3>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
