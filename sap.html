@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAP Databricks Assessment</title>
+    <title>SAP Migration Readiness Assessment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -246,10 +246,10 @@
     <header class="ciq-header no-print">
         <div class="header-container">
             <div style="display: flex; align-items: center; gap: 24px;">
-                <a href="https://bpcs.com/" title="Blueprint Home">
-                    <img width="150" height="30" src="https://bpcs.com/wp-content/uploads/2021/02/BlueprintLogo_White_Tiles-400x81.png" alt="Blueprint Logo">
+                <a href="#" title="Home">
+                    <span style="font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.5px;">Your Logo</span>
                 </a>
-                <h1 style="color: white; font-size: 1.5rem; font-weight: 700; margin: 0; line-height: 1;">SAP Databricks Assessment</h1>
+                <h1 style="color: white; font-size: 1.5rem; font-weight: 700; margin: 0; line-height: 1;">SAP Migration Readiness Assessment</h1>
             </div>
         </div>
     </header>
@@ -308,7 +308,7 @@
                             <textarea id="topUseCases" name="topUseCases" placeholder="Ex: Supply Chain Intelligence (demand forecasting, supplier risk), Logistics Optimization, Financial Planning, Customer 360..."></textarea>
                         </div>
                          <div class="form-group">
-                            <label>Primary Business Drivers for Databricks:</label>
+                            <label>Primary Business Drivers for Migration:</label>
                              <div class="checkbox-group">
                                 <div class="checkbox-item"><input type="checkbox" name="businessDrivers" value="cost"><label>TCO Reduction / Licensing Costs</label></div>
                                 <div class="checkbox-item"><input type="checkbox" name="businessDrivers" value="ai_ml"><label>Advanced AI/ML Capabilities</label></div>
@@ -321,7 +321,7 @@
                     <div class="subsection">
                         <h4>1.2 SAP Business Data Cloud (BDC)</h4>
                         <div class="form-group">
-                             <label>Is the organization currently using or planning to use the SAP Databricks BDC (Business Data Connector)?</label>
+                             <label>Is the organization currently using or planning to use the SAP BDC (Business Data Connector)?</label>
                              <div class="radio-group">
                                 <div class="radio-item"><input type="radio" id="bdcYes" name="bdcUsage" value="yes" required data-required="true"><label for="bdcYes">Yes, currently using</label></div>
                                 <div class="radio-item"><input type="radio" id="bdcPlanned" name="bdcUsage" value="planned"><label for="bdcPlanned">Planned / Investigating</label></div>
@@ -470,7 +470,7 @@
                         <div class="form-group">
                             <label>Current or Planned SAP Data Extraction Tools:</label>
                             <div class="checkbox-group">
-                                <div class="checkbox-item"><input type="checkbox" name="extractionTools" value="sap_bdc"><label>SAP Business Data Cloud (BDC) connector to Databricks</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="extractionTools" value="sap_bdc"><label>SAP Business Data Cloud (BDC) connector</label></div>
                                 <div class="checkbox-item"><input type="checkbox" name="extractionTools" value="slt"><label>SAP SLT</label></div>
                                 <div class="checkbox-item"><input type="checkbox" name="extractionTools" value="bods"><label>SAP Data Services (BODS)</label></div>
                                 <div class="checkbox-item"><input type="checkbox" name="extractionTools" value="di"><label>SAP Data Intelligence</label></div>
@@ -508,7 +508,7 @@
                      <div class="subsection">
                         <h4>3.3 Data Logic & Transformation</h4>
                         <div class="form-group">
-                            <label for="sapBusinessLogic">Describe any critical business logic embedded in SAP (e.g., in BW transformations, ABAP code) that needs to be replicated in Databricks:</label>
+                            <label for="sapBusinessLogic">Describe any critical business logic embedded in SAP (e.g., in BW transformations, ABAP code) that needs to be replicated in target platform:</label>
                             <textarea id="sapBusinessLogic" name="sapBusinessLogic" placeholder="e.g., currency conversions, complex joins, custom hierarchies..."></textarea>
                         </div>
                          <div class="form-group">
@@ -536,7 +536,7 @@
                     <div class="subsection">
                         <h4>4.1 Technical Readiness & Data Complexity</h4>
                         <div class="form-group">
-                            <label>Identify Complex SAP Data Semantics required in Lakehouse:</label>
+                            <label>Identify Complex SAP Data Semantics required in target platform:</label>
                             <div class="checkbox-group">
                                 <div class="checkbox-item"><input type="checkbox" name="sapSemantics" value="hierarchies"><label>Complex Hierarchies (Set/Financial/Cost Center)</label></div>
                                 <div class="checkbox-item"><input type="checkbox" name="sapSemantics" value="currency"><label>Currency Conversion Logic (TCURR)</label></div>
@@ -575,21 +575,21 @@
 
             <div class="section page-break">
                 <div class="section-header">
-                    <span>5. Target Databricks Architecture</span>
+                    <span>5. Target Platform Architecture</span>
                      <div class="na-toggle">
-                        <input type="checkbox" id="na-databricks" class="na-checkbox" data-section-content-id="databricks-content">
-                        <label for="na-databricks">N/A</label>
+                        <input type="checkbox" id="na-target-platform" class="na-checkbox" data-section-content-id="target-platform-content">
+                        <label for="na-target-platform">N/A</label>
                     </div>
                 </div>
-                <div class="section-content" id="databricks-content">
+                <div class="section-content" id="target-platform-content">
                     <div class="subsection">
                         <h4>5.1 Lakehouse Setup</h4>
                          <div class="form-group">
-                            <label>Target Cloud for Databricks:</label>
+                            <label>Target Cloud Platform:</label>
                             <div class="radio-group">
-                                <div class="radio-item"><input type="radio" id="aws" name="databricksCloud" value="aws" required data-required="true"><label for="aws">AWS</label></div>
-                                <div class="radio-item"><input type="radio" id="azure" name="databricksCloud" value="azure"><label for="azure">Azure</label></div>
-                                <div class="radio-item"><input type="radio" id="gcp" name="databricksCloud" value="gcp"><label for="gcp">GCP</label></div>
+                                <div class="radio-item"><input type="radio" id="aws" name="targetCloud" value="aws" required data-required="true"><label for="aws">AWS</label></div>
+                                <div class="radio-item"><input type="radio" id="azure" name="targetCloud" value="azure"><label for="azure">Azure</label></div>
+                                <div class="radio-item"><input type="radio" id="gcp" name="targetCloud" value="gcp"><label for="gcp">GCP</label></div>
                             </div>
                              <span class="error-message">Please select an option.</span>
                         </div>
@@ -597,21 +597,21 @@
                             <label>Planned Data Architecture:</label>
                             <div class="checkbox-group">
                                 <div class="checkbox-item"><input type="checkbox" name="lakehouseArch" value="medallion"><label>Medallion Architecture (Bronze/Silver/Gold)</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="lakehouseArch" value="delta"><label>Delta Lake for all tables</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="lakehouseArch" value="unity"><label>Unity Catalog for Governance</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="lakehouseArch" value="delta"><label>Data Lakehouse for all tables</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="lakehouseArch" value="unity"><label>Data Catalog for Governance</label></div>
                             </div>
                         </div>
                     </div>
                      <div class="subsection">
                         <h4>5.2 Workloads & Use Cases</h4>
                         <div class="form-group">
-                            <label>Primary workloads to run on SAP data in Databricks:</label>
+                            <label>Primary workloads to run on SAP data in target platform:</label>
                             <div class="checkbox-group">
-                                <div class="checkbox-item"><input type="checkbox" name="databricksWorkloads" value="bi"><label>BI & Reporting (e.g., Power BI, Tableau)</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="databricksWorkloads" value="sql"><label>Databricks SQL</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="databricksWorkloads" value="etl"><label>ETL/ELT with Delta Live Tables</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="databricksWorkloads" value="ai-ml"><label>AI / Machine Learning</label></div>
-                                <div class="checkbox-item"><input type="checkbox" name="databricksWorkloads" value="streaming"><label>Real-time Streaming Analytics</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="targetWorkloads" value="bi"><label>BI & Reporting (e.g., Power BI, Tableau)</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="targetWorkloads" value="sql"><label>SQL Analytics</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="targetWorkloads" value="etl"><label>ETL/ELT with Streaming Tables</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="targetWorkloads" value="ai-ml"><label>AI / Machine Learning</label></div>
+                                <div class="checkbox-item"><input type="checkbox" name="targetWorkloads" value="streaming"><label>Real-time Streaming Analytics</label></div>
                             </div>
                         </div>
                          <div class="form-group">
@@ -649,7 +649,7 @@
                     <div class="subsection">
                         <h4>6.2 Access Control</h4>
                          <div class="form-group">
-                            <label>Identity Provider for Databricks Users:</label>
+                            <label>Identity Provider for Platform Users:</label>
                             <div class="radio-group">
                                 <div class="radio-item"><input type="radio" id="aad" name="identityProvider" value="aad" required data-required="true"><label for="aad">Azure Active Directory</label></div>
                                 <div class="radio-item"><input type="radio" id="okta" name="identityProvider" value="okta"><label for="okta">Okta</label></div>
@@ -694,8 +694,8 @@
                                 <input type="number" id="currentSapSpend" name="currentSapSpend" min="0">
                             </div>
                              <div class="form-group">
-                                <label for="targetDatabricksSpend">Target annual Databricks spend ($):</label>
-                                <input type="number" id="targetDatabricksSpend" name="targetDatabricksSpend" min="0">
+                                <label for="targetPlatformSpend">Target annual platform spend ($):</label>
+                                <input type="number" id="targetPlatformSpend" name="targetPlatformSpend" min="0">
                             </div>
                         </div>
                     </div>

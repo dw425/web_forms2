@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unity Catalog Migration Assessment</title>
+    <title>Data Catalog Migration Assessment</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -256,10 +256,10 @@
     <header class="ciq-header no-print">
         <div class="header-container">
             <div style="display: flex; align-items: center; gap: 24px;">
-                <a href="https://bpcs.com/" title="Blueprint Home">
-                    <img width="150" height="30" src="https://bpcs.com/wp-content/uploads/2021/02/BlueprintLogo_White_Tiles-400x81.png" alt="Blueprint Logo">
+                <a href="#" title="Home">
+                    <span style="font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.5px;">Your Logo</span>
                 </a>
-                <h1 style="color: white; font-size: 1.5rem; font-weight: 700; margin: 0; line-height: 1;">Unity Catalog Migration Assessment</h1>
+                <h1 style="color: white; font-size: 1.5rem; font-weight: 700; margin: 0; line-height: 1;">Data Catalog Migration Assessment</h1>
             </div>
         </div>
     </header>
@@ -273,7 +273,7 @@
                      <div class="subsection">
                         <div class="inline-inputs">
                             <div class="form-group"><label for="appName">Application/Team Name & Business Function:</label><input type="text" id="appName" name="appName" required data-required="true"><span class="error-message">This field is required.</span></div>
-                            <div class="form-group"><label for="appWorkspaces">Databricks Workspaces Utilized:</label><input type="text" id="appWorkspaces" name="appWorkspaces" required data-required="true"><span class="error-message">This field is required.</span></div>
+                            <div class="form-group"><label for="appWorkspaces">Platform Workspaces Utilized:</label><input type="text" id="appWorkspaces" name="appWorkspaces" required data-required="true"><span class="error-message">This field is required.</span></div>
                         </div>
                         <div class="inline-inputs">
                             <div class="form-group"><label for="businessOwner">Business Owner(s):</label><input type="text" id="businessOwner" name="businessOwner" required data-required="true"><span class="error-message">This field is required.</span></div>
@@ -379,8 +379,8 @@
                 <div class="section-content" id="s4-content">
                     <div class="subsection">
                         <h4>4.1 Execution Environment</h4>
-                        <div class="form-group"><label for="codeLocation">Where is the application code located?</label><textarea id="codeLocation" name="codeLocation" placeholder="List all known Databricks jobs, notebooks, or code repositories." required data-required="true"></textarea><span class="error-message">Required.</span></div>
-                        <div class="form-group"><label for="codeExecution">How is the application code executed?</label><textarea id="codeExecution" name="codeExecution" placeholder="e.g., Databricks Jobs, Airflow, Azure Data Factory. If external tools, who is responsible for updating them?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
+                        <div class="form-group"><label for="codeLocation">Where is the application code located?</label><textarea id="codeLocation" name="codeLocation" placeholder="List all known platform jobs, notebooks, or code repositories." required data-required="true"></textarea><span class="error-message">Required.</span></div>
+                        <div class="form-group"><label for="codeExecution">How is the application code executed?</label><textarea id="codeExecution" name="codeExecution" placeholder="e.g., Platform Jobs, Airflow, Azure Data Factory. If external tools, who is responsible for updating them?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
                         <div class="form-group"><label for="clusterAccessModel">Cluster/Compute Access Control:</label><textarea id="clusterAccessModel" name="clusterAccessModel" placeholder="How is access to compute controlled? e.g., Cluster policies, instance profiles/service principals..." required data-required="true"></textarea><span class="error-message">Required.</span></div>
                     </div>
                     <div class="subsection">
@@ -409,13 +409,13 @@
             </div>
 
              <div class="section page-break">
-                <div class="section-header"><span>6. Target Unity Catalog Architecture</span><div class="na-toggle"><input type="checkbox" id="na-s6" class="na-checkbox" data-section-content-id="s6-content"><label for="na-s6">N/A</label></div></div>
+                <div class="section-header"><span>6. Target Data Catalog Architecture</span><div class="na-toggle"><input type="checkbox" id="na-s6" class="na-checkbox" data-section-content-id="s6-content"><label for="na-s6">N/A</label></div></div>
                 <div class="section-content" id="s6-content">
                     <div class="subsection">
                         <div class="form-group"><label for="metastoreStrategy">Metastore Strategy:</label><textarea id="metastoreStrategy" name="metastoreStrategy" placeholder="Describe the planned metastore architecture. e.g., One metastore per region? One for prod and one for non-prod?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
                         <div class="form-group"><label for="catalogDesign">Catalog Design:</label><textarea id="catalogDesign" name="catalogDesign" placeholder="Describe the planned catalog structure. e.g., Catalogs for business units, environments (dev/prod), or data sources?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
                         <div class="form-group"><label for="storageCredentials">Strategy for Storage Credentials & External Locations:</label><textarea id="storageCredentials" name="storageCredentials" placeholder="How will you manage access to the underlying cloud storage for different teams or projects?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
-                        <div class="form-group"><label for="ownershipModel">Ownership & Governance Model:</label><textarea id="ownershipModel" name="ownershipModel" placeholder="Who will own objects (Catalogs, Schemas, Tables) in Unity Catalog? How will permissions be managed?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
+                        <div class="form-group"><label for="ownershipModel">Ownership & Governance Model:</label><textarea id="ownershipModel" name="ownershipModel" placeholder="Who will own objects (Catalogs, Schemas, Tables) in Data Catalog? How will permissions be managed?" required data-required="true"></textarea><span class="error-message">Required.</span></div>
                     </div>
                 </div>
             </div>
@@ -425,7 +425,7 @@
                 <div class="section-content" id="s7-content">
                     <div class="subsection">
                         <h4>7.1 Change Management</h4>
-                        <div class="form-group"><label for="trainingPlan">Team Enablement & Training Plan:</label><textarea id="trainingPlan" name="trainingPlan" placeholder="What is the plan to train developers and analysts on Unity Catalog concepts and the new security model?"></textarea></div>
+                        <div class="form-group"><label for="trainingPlan">Team Enablement & Training Plan:</label><textarea id="trainingPlan" name="trainingPlan" placeholder="What is the plan to train developers and analysts on Data Catalog concepts and the new security model?"></textarea></div>
                         <div class="form-group"><label for="communicationPlan">User Communication Plan:</label><textarea id="communicationPlan" name="communicationPlan" placeholder="How will changes be communicated to end-users (e.g., BI tool users, data scientists)?"></textarea></div>
                     </div>
                     <div class="subsection">
